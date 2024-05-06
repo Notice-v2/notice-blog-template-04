@@ -1,7 +1,7 @@
 'use client'
 
 import { Link } from '@chakra-ui/next-js'
-import { Box, Flex, Heading, HStack, Text, useMediaQuery, VStack } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, HStack, Text, useMediaQuery, VStack } from '@chakra-ui/react'
 import dayjs from 'dayjs'
 import { useMemo } from 'react'
 import { NarrowArrowLeftIcon } from '../icons'
@@ -68,6 +68,19 @@ export const SubPageComponents = ({ data }: Props) => {
 						px={{ base: '24px', md: '0px' }}
 					>
 						<VStack w="100%" mb={'36px'} justify="center" align="flex-start">
+							<Button
+								size="sm"
+								variant={'outline'}
+								as={Link}
+								href={homeHref}
+								leftIcon={<NarrowArrowLeftIcon size={16} color="black" />}
+								iconSpacing={2}
+								colorScheme="gray"
+								my={2}
+								fontWeight={500}
+							>
+								All Posts
+							</Button>
 							<Text mb={2} fontSize="md" color="fg.muted">
 								Published on {formattedDate}
 							</Text>
