@@ -1,99 +1,136 @@
 'use client'
 
-import { DEFAULT_COLOR } from '@/utils/theme'
-import { AspectRatio, Button, Flex, Heading, Image, Text } from '@chakra-ui/react'
-import dayjs from 'dayjs'
+import { Link } from '@chakra-ui/next-js'
+import { AspectRatio, Box, Flex, Heading, Image, Text } from '@chakra-ui/react'
+import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
-import { useMemo } from 'react'
 
 interface Props {
-	page: any
-	accentColor?: string
+	pages: any[]
 }
 
-export const BlogHero = ({ page, accentColor }: Props) => {
-	const formattedDate = useMemo(() => dayjs(page?.createdAt).format('MMM D, YYYY'), [page?.createdAt])
-
+export const BlogHero = ({ pages }: Props) => {
 	return (
-		<Flex
-			gap="48px"
-			direction={{ base: 'column', md: 'row' }}
-			justify="center"
-			alignItems="stretch"
-			mx="auto"
-			px={{ base: '24px', sm: '36px', md: '16px' }}
-			w="100%"
-			height={'100%'}
-			maxW="1260px"
-			as={Link}
-			href={page?.slug || page?._id}
-			cursor="pointer"
-		>
-			<AspectRatio
+		<Flex gap={{ base: '6px', md: '0px' }} direction="row" wrap={'wrap'}>
+			<StyledBox
 				as={motion.div}
-				initial={{ opacity: 0, scale: 0.5 }}
-				animate={{ opacity: 1, scale: 1 }}
-				transition="0.8 0.5 cubic-bezier(0, 0.71, 0.2, 1.01)"
-				h="100%"
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1, transition: { duration: 0.5 } }}
 				w="100%"
-				maxW={{ base: '100%', md: '300px', lg: '560px' }}
-				ratio={4 / 3}
-				flexShrink={{ base: 0, lg: 1 }}
-				flexBasis={'100%'}
-				borderRadius="4px"
+				position="relative"
+				flexBasis={{ base: '100%', md: '66.6%' }}
+				px={{ base: '5px', md: '0px' }}
 			>
-				<Image
-					h="100%"
-					w="100%"
-					borderRadius="4px"
-					src={
-						page?.coverImage === '-' || !page?.coverImage
-							? 'https://assets-notice.b-cdn.net/renderer/image-not-found-in-blog.svg'
-							: page?.coverImage
-					}
-				/>
-			</AspectRatio>
+				<Link href={pages[0]?._id} _hover={{ textDecoration: 'none' }}>
+					<Box position="absolute" bg={'rgba(0, 0, 0, 0.4)'} transition="all 0.3s ease" inset={0}>
+						<Box position="absolute" bottom="20px" left="0" right="0" p="20px">
+							<Box color="white" fontSize={{ base: 'xl', md: '3xl' }} fontWeight="bold">
+								{pages[0]?.title}
+							</Box>
+							<Box color="white" fontSize="14px">
+								{pages[0]?.description}
+							</Box>
+						</Box>
+					</Box>
+					<AspectRatio borderRadius={'4px'} overflow="hidden" w="100%" ratio={4 / 3}>
+						<Image
+							borderRadius={'4px'}
+							src={
+								pages[0]?.coverImage === '-' || !pages[0]?.coverImage
+									? 'https://assets-notice.b-cdn.net/renderer/image-not-found-in-blog.svg'
+									: pages[0]?.coverImage
+							}
+							w="100%"
+							zIndex={-1}
+							h="100%"
+							objectFit="contain"
+						/>
+					</AspectRatio>
+				</Link>
+			</StyledBox>
 			<Flex
-				as={motion.div}
-				initial={{ opacity: 0, y: 100 }}
-				animate={{ opacity: 1, y: 0 }}
-				transition="0.8 0.5 cubic-bezier(0, 0.71, 0.2, 1.01)"
+				gap="6px"
 				direction="column"
-				align="start"
-				justify="center"
 				w="100%"
+				position="relative"
+				px="5px"
+				flexBasis={{ base: '100%', md: '33.3%' }}
 			>
-				<Text pb={1} fontSize={{ base: 'xs', md: 'sm', lg: 'md' }} color={'gray.400'}>
-					{formattedDate}
-				</Text>
-				<Heading
-					lineHeight={1.2}
-					fontWeight="bold"
-					as="h1"
-					fontSize={{ base: '3xl', md: 'xl', lg: '6xl' }}
-					color="blackAlpha.800"
-					noOfLines={2}
+				<StyledBox
+					as={motion.div}
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1, transition: { duration: 0.5, delay: 0.3 } }}
+					w="100%"
+					position="relative"
+					flexBasis={{ base: '100%', md: '66.6%' }}
 				>
-					{page?.title}
-				</Heading>
-				<Text noOfLines={2} my={6} fontSize={{ base: 'md', lg: 'lg' }}>
-					{page?.description}
-				</Text>
-				<Button
-					mt={4}
-					ml={'auto'}
-					borderRadius="unset"
-					borderColor={accentColor ?? DEFAULT_COLOR}
-					color={accentColor ?? DEFAULT_COLOR}
-					variant="outline"
-					as={Link}
-					href={page?.slug || page?._id}
-					_hover={{ bg: accentColor ?? DEFAULT_COLOR, color: 'white' }}
+					<Link href={pages[1]?._id}>
+						<Box as={'div'} position="absolute" bg={'rgba(0, 0, 0, 0.4)'} transition="all 0.3s ease" inset={0}></Box>
+						<Box position="absolute" bottom="20px" left="0" right="0" p="20px">
+							<Heading noOfLines={1} as="h1" color="white" fontSize={{ base: 'xl', md: '3xl' }} fontWeight="bold">
+								{pages[1]?.title}
+							</Heading>
+							<Text noOfLines={2} color="white" fontSize="14px">
+								{pages[1]?.description}
+							</Text>
+						</Box>
+						<AspectRatio borderRadius={'4px'} overflow="hidden" w="100%" ratio={4 / 3}>
+							<Image
+								borderRadius={'4px'}
+								src={
+									pages[1]?.coverImage === '-' || !pages[1]?.coverImage
+										? 'https://assets-notice.b-cdn.net/renderer/image-not-found-in-blog.svg'
+										: pages[1]?.coverImage
+								}
+								w="100%"
+								zIndex={-1}
+								h="100%"
+							/>
+						</AspectRatio>
+					</Link>
+				</StyledBox>
+				<StyledBox
+					as={motion.div}
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1, transition: { duration: 0.5, delay: 0.5 } }}
+					w="100%"
+					position="relative"
+					flexBasis={{ base: '100%', md: '66.6%' }}
 				>
-					Read more
-				</Button>
+					<Link href={pages[2]?._id}>
+						<Box position="absolute" bg={'rgba(0, 0, 0, 0.4)'} transition="all 0.3s ease" inset={0}>
+							<Box position="absolute" bottom="20px" left="0" right="0" p="20px">
+								<Box color="white" fontSize={{ base: 'xl', md: '3xl' }} fontWeight="bold">
+									{pages[2]?.title}
+								</Box>
+								<Box noOfLines={2} color="white" fontSize="14px">
+									{pages[2]?.description}
+								</Box>
+							</Box>
+						</Box>
+						<AspectRatio borderRadius={'4px'} overflow="hidden" h="100%" w="100%" ratio={4 / 3}>
+							<Image
+								borderRadius={'4px'}
+								src={
+									pages[2]?.coverImage === '-' || !pages[2]?.coverImage
+										? 'https://assets-notice.b-cdn.net/renderer/image-not-found-in-blog.svg'
+										: pages[2]?.coverImage
+								}
+								w="100%"
+								zIndex={-1}
+								h="100%"
+								objectFit="cover"
+							/>
+						</AspectRatio>
+					</Link>
+				</StyledBox>
 			</Flex>
 		</Flex>
 	)
 }
+
+const StyledBox = styled(Box)`
+	&:hover div:first-child {
+		background: none;
+	}
+`

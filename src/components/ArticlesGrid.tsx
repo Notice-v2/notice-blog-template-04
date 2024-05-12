@@ -1,7 +1,7 @@
 'use client'
 
 import { useSelectedTag } from '@/providers/selectedTagProvider'
-import { Box, Divider, Flex, Heading, SimpleGrid } from '@chakra-ui/react'
+import { Box, Flex, SimpleGrid } from '@chakra-ui/react'
 import { motion, useInView } from 'framer-motion'
 import { useMemo, useRef } from 'react'
 import { ArticleCard } from './ArticleCard'
@@ -48,34 +48,36 @@ export const ArticlesGrid = ({ pages, accentColor }: Props) => {
 			viewport={{ once: true }}
 			boxSizing="border-box"
 			mx="auto"
-			mb="10px"
-			p="24px"
+			mb="30px"
 			w="100%"
 			h="fit-content"
-			maxW="1260px"
 			layout
 			layoutRoot
 		>
 			<Flex
-				mb={2}
 				gap={{ base: '6px', md: '24px' }}
 				direction={{ base: 'column', md: 'row' }}
 				justify="space-between"
 				align="center"
+				bg="blackAlpha.900"
+				px="16px"
+				py="8px"
+				mb="20px"
+				minH="52px"
+				borderRadius={{ base: 0, md: '4px' }}
 			>
-				<Heading
+				<Box
 					id="all-posts"
 					flexShrink={0}
 					fontWeight="bold"
 					as="h1"
-					fontSize={{ base: '2xl', lg: '4xl' }}
-					color="blackAlpha.800"
+					fontSize={{ base: '2xl', lg: '3xl' }}
+					color="white"
 				>
 					All posts
-				</Heading>
+				</Box>
 				<TagsGroup tags={tags} activeTag={selectedTag} accentColor={accentColor} />
 			</Flex>
-			<Divider mb={12} orientation="horizontal" color="gray.400" />
 			<SimpleGrid
 				ref={ref}
 				as={motion.div}
