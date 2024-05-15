@@ -32,7 +32,7 @@ export const Navbar = ({ meta, accentColor }: Props) => {
 			my={{ base: 0, md: 4 }}
 			bg={'transparent'}
 			color="white"
-			bgColor={'blackAlpha.900'}
+			bgColor={accentColor ?? 'blackAlpha.900'}
 			borderRadius={{ base: 0, md: '4px' }}
 			as={motion.nav}
 			initial={{ opacity: 0 }}

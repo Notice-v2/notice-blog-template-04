@@ -112,7 +112,7 @@ export const TagsGroup = ({ tags, activeTag, accentColor }: Props) => {
 					flexShrink={0}
 					size="md"
 					variant="solid"
-					bgColor={activeTag === 'All' ? accentColor ?? DEFAULT_COLOR : '#F2F2F2'}
+					bgColor={activeTag === 'All' ? DEFAULT_COLOR : '#F2F2F2'}
 					color={activeTag === 'All' ? 'white' : 'blackAlpha.600'}
 					userSelect="none"
 					onClick={() => setSelectedTag('All')}
@@ -130,7 +130,7 @@ export const TagsGroup = ({ tags, activeTag, accentColor }: Props) => {
 							size="md"
 							key={tag}
 							variant="solid"
-							bgColor={activeTag === tag ? accentColor ?? DEFAULT_COLOR : '#F2F2F2'}
+							bgColor={activeTag === tag ? DEFAULT_COLOR : '#F2F2F2'}
 							color={activeTag === tag ? 'white' : 'blackAlpha.600'}
 							userSelect="none"
 							onClick={() => setSelectedTag(tag)}

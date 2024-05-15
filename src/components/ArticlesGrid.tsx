@@ -59,7 +59,7 @@ export const ArticlesGrid = ({ pages, accentColor }: Props) => {
 				direction={{ base: 'column', md: 'row' }}
 				justify="space-between"
 				align="center"
-				bg="blackAlpha.900"
+				bg={accentColor ?? 'blackAlpha.900'}
 				px="16px"
 				py="8px"
 				mb="20px"
