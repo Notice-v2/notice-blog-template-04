@@ -4,7 +4,6 @@ import { useSelectedTag } from '@/providers/selectedTagProvider'
 import { DEFAULT_COLOR } from '@/utils/theme'
 import { Circle, HStack, Tag, chakra } from '@chakra-ui/react'
 import { css } from '@emotion/react'
-import styled from '@emotion/styled'
 import { motion } from 'framer-motion'
 import { useCallback, useMemo, useRef } from 'react'
 
@@ -70,7 +69,7 @@ export const TagsGroup = ({ tags, activeTag, accentColor }: Props) => {
 	if (!tags.length) return null
 
 	return (
-		<StyledBox
+		<Box
 			as={motion.div}
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
@@ -78,8 +77,6 @@ export const TagsGroup = ({ tags, activeTag, accentColor }: Props) => {
 			maxW={{ base: '90%', md: '70%' }}
 			width="fit-content"
 			position="relative"
-			showStart={showStart}
-			showEnd={showEnd}
 			h="fit-content"
 		>
 			<HStack
@@ -170,51 +167,6 @@ export const TagsGroup = ({ tags, activeTag, accentColor }: Props) => {
 					<ArrowRight size={12} color="black" />
 				</Circle>
 			)}
-		</StyledBox>
+		</Box>
 	)
 }
-
-const StyledBox = styled(Box)<{ showStart: boolean; showEnd: boolean }>`
-	${(props) =>
-		props.showStart
-			? css`
-					::before {
-						content: '';
-						position: absolute;
-						top: 0;
-						bottom: 0;
-						left: 0;
-						width: 12px;
-						z-index: 2;
-						padding-left: 12px;
-						background: linear-gradient(
-							270deg,
-							rgba(255, 255, 255, 0) 0%,
-							rgba(244, 248, 250, 0.75) 25%,
-							rgba(244, 248, 250, 0.2) 50%,
-							rgb(244, 248, 250) 75%
-						);
-					}
-			  `
-			: undefined}
-	${(props) =>
-		props.showEnd
-			? css`
-					::after {
-						content: '';
-						position: absolute;
-						top: 0;
-						bottom: 0;
-						right: 0;
-						width: 12px;
-						background: linear-gradient(
-							270deg,
-							rgba(255, 255, 255, 0) 0%,
-							rgba(244, 248, 250, 0.75) 25%,
-							rgba(244, 248, 250, 0.2) 50%,
-							rgb(244, 248, 250) 75%
-						);
-					}
-			  `
-			: undefined}
-`
