@@ -9,7 +9,7 @@ interface Props {
 export const Logo = ({ src }: Props) => {
 	return (
 		<Box w="fit-content" h="fit-content" borderRadius={'50%'}>
-			<Image src={src} h={25} w={25} />
+			<Image src={src} h={24} w={24} />
 		</Box>
 	)
 }

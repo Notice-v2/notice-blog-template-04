@@ -87,7 +87,13 @@ export const SubPageComponents = ({ data }: Props) => {
 								<Text mb={2} fontSize="md" color="fg.muted">
 									Published on {formattedDate}
 								</Text>
-								<Heading as="h1" fontSize="42px" fontWeight={700} lineHeight={1.2}>
+								<Heading
+									fontWeight="700"
+									lineHeight="auto"
+									color="black"
+									as="h1"
+									fontSize={{ base: '2rem', md: '4rem' }}
+								>
 									{data.title}
 								</Heading>
 								{data?.author != undefined && !isBigScreen && (

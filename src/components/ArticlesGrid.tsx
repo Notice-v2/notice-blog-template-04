@@ -1,7 +1,7 @@
 'use client'
 
 import { useSelectedTag } from '@/providers/selectedTagProvider'
-import { Box, Flex, SimpleGrid } from '@chakra-ui/react'
+import { Box, Flex, Heading, SimpleGrid } from '@chakra-ui/react'
 import { motion, useInView } from 'framer-motion'
 import { useMemo, useRef } from 'react'
 import { ArticleCard } from './ArticleCard'
@@ -59,23 +59,14 @@ export const ArticlesGrid = ({ pages, accentColor }: Props) => {
 				direction={{ base: 'column', md: 'row' }}
 				justify="space-between"
 				align="center"
-				bg={accentColor ?? 'blackAlpha.900'}
-				px="16px"
 				py="8px"
-				mb="20px"
+				my={{ base: '36px', md: '64px' }}
 				minH="52px"
-				borderRadius={{ base: 0, md: '4px' }}
 			>
-				<Box
-					id="all-posts"
-					flexShrink={0}
-					fontWeight="bold"
-					as="h1"
-					fontSize={{ base: '2xl', lg: '3xl' }}
-					color="white"
-				>
+				<Heading fontWeight="700" color="black" as="h1" fontSize={{ base: '2rem', md: '5rem' }}>
 					All posts
-				</Box>
+				</Heading>
+
 				<TagsGroup tags={tags} activeTag={selectedTag} accentColor={accentColor} />
 			</Flex>
 			<SimpleGrid

@@ -11,17 +11,15 @@ interface Props {
 }
 
 export const HomeComponents = ({ data }: Props) => {
-	const heroElements = useMemo(() => (data?.pages.length >= 3 ? data?.pages.slice(0, 3) : data?.pages.slice(0, 1)), [])
-	const mainArticles = useMemo(() => (data?.pages.length >= 3 ? data?.pages.slice(3) : data?.pages.slice(1)), [])
+	const heroElements = useMemo(() => data?.pages.slice(0, 1), [])
+	const mainArticles = useMemo(() => data?.pages.slice(1), [])
 	return (
 		<Box w="100%">
-			<Box mx="auto" maxW="1080px">
+			<Box mx={'auto'} maxW="1180px" w="100%" px="24px">
 				<Navbar meta={data?.metadata ?? []} accentColor={data?.project?.accentColor} />
-				{data?.pages.length >= 3 && (
-					<Box mt="10px" as="section">
-						<BlogHero pages={heroElements} />
-					</Box>
-				)}
+				<Box mt="10px" as="section">
+					<BlogHero page={data?.pages?.[0]} />
+				</Box>
 				<Box mt={{ base: '20px', lg: data?.pages?.length > 3 ? '20px' : '20px' }} as="section">
 					<ArticlesGrid accentColor={data?.project?.accentColor} pages={mainArticles} />
 				</Box>

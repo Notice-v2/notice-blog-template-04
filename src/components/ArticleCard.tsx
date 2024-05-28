@@ -74,6 +74,7 @@ export const ArticleCard = ({ page, accentColor }: Props) => {
 					fontWeight="bold"
 					color="blackAlpha.800"
 					noOfLines={2}
+					textDecoration={isHovered ? 'underline' : 'none'}
 				>
 					{page.title}
 				</Heading>
