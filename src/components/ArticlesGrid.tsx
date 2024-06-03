@@ -77,8 +77,8 @@ export const ArticlesGrid = ({ pages, accentColor }: Props) => {
 				whileInView="show"
 				viewport={{ once: true }}
 				gridAutoRows="1fr"
-				columns={{ base: 1, sm: 2, md: 3 }}
-				gap="46px"
+				columns={{ base: 1, sm: 2 }}
+				gap="64px"
 				justifyContent="stretch"
 			>
 				{filteredArticles.map((page) => (

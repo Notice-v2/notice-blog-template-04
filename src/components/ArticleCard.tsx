@@ -3,12 +3,11 @@
 import { useIsHovered } from '@/hooks'
 import { DEFAULT_COLOR } from '@/utils/theme'
 import { Link } from '@chakra-ui/next-js'
-import { Circle, Flex, Heading, Tag, Text, VStack } from '@chakra-ui/react'
+import { AspectRatio, Circle, Flex, Heading, Image, Tag, Text, VStack } from '@chakra-ui/react'
 import dayjs from 'dayjs'
 import { motion } from 'framer-motion'
 import { useMemo, useRef } from 'react'
 import { Author } from './Author'
-import { ScalingImage } from './ScalingImage'
 
 interface Props {
 	page: any
@@ -43,7 +42,31 @@ export const ArticleCard = ({ page, accentColor }: Props) => {
 				align="start"
 				justify="stretch"
 			>
-				<ScalingImage src={page?.coverImage} isParentHovered={isHovered} />
+				<AspectRatio borderRadius={'4px'} overflow="hidden" maxW="100%" w="100%" ratio={4 / 2}>
+					<Image
+						borderRadius={'4px'}
+						src={
+							page?.coverImage === '-' || !page?.coverImage
+								? 'https://assets-notice.b-cdn.net/renderer/image-not-found-in-blog.svg'
+								: page?.coverImage
+						}
+						w="100%"
+						h="100%"
+					/>
+				</AspectRatio>
+
+				<Heading
+					as="h1"
+					fontSize={{ base: 'lg', md: 'xl', lg: '3xl' }}
+					lineHeight={1.2}
+					fontWeight="400"
+					color="blackAlpha.800"
+					noOfLines={2}
+					textDecoration={isHovered ? 'underline' : 'none'}
+					transition={'text-decoration 0.2s ease-in-out'}
+				>
+					{page.title}
+				</Heading>
 				<Flex direction="row" gap="6px" w="100%" h="fit-content" align="center" justify="flex-start">
 					{primaryTag && (
 						<>
@@ -54,30 +77,19 @@ export const ArticleCard = ({ page, accentColor }: Props) => {
 						</>
 					)}
 					{page?.createdAt && (
-						<Text fontSize="xs" color="gray.500">
+						<Text fontSize="sm" color="gray.500">
 							{dayjs(page?.createdAt).format('MMM D, YYYY')}
 						</Text>
 					)}
 					{page?.metadata?.timeToRead && (
 						<>
 							<Circle size="4px" bg="gray.200"></Circle>
-							<Text fontSize="xs" color="gray.500">
+							<Text fontSize="sm" color="gray.500">
 								{Math.round(Number(page.metadata.timeToRead) / 60)} min read
 							</Text>
 						</>
 					)}
 				</Flex>
-				<Heading
-					as="h1"
-					fontSize={{ base: 'lg', md: 'xl', lg: '3xl' }}
-					lineHeight={1.2}
-					fontWeight="bold"
-					color="blackAlpha.800"
-					noOfLines={2}
-					textDecoration={isHovered ? 'underline' : 'none'}
-				>
-					{page.title}
-				</Heading>
 				<Text noOfLines={3} color="blackAlpha.600" fontSize={{ base: 'sm', md: 'md', lg: 'lg' }}>
 					{page.description}
 				</Text>
