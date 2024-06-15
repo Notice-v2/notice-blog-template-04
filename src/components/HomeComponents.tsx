@@ -4,7 +4,6 @@ import { Box } from '@chakra-ui/react'
 import { useMemo } from 'react'
 import { ArticlesGrid } from './ArticlesGrid'
 import { BlogHero } from './BlogHero'
-import { Navbar } from './Navbar'
 
 interface Props {
 	data: any
@@ -16,7 +15,6 @@ export const HomeComponents = ({ data }: Props) => {
 	return (
 		<Box w="100%">
 			<Box mx={'auto'} maxW="1180px" w="100%" px="24px">
-				<Navbar meta={data?.metadata ?? []} accentColor={data?.project?.accentColor} />
 				<Box mt="10px" as="section">
 					<BlogHero page={data?.pages?.[0]} />
 				</Box>

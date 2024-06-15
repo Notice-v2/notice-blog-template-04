@@ -26,6 +26,8 @@ export const Navbar = ({ meta, accentColor }: Props) => {
 			align="center"
 			justify={{ base: 'center', md: 'space-between' }}
 			w="100%"
+			mx={'auto'}
+			maxW="1180px"
 			gap={'6px'}
 			my={{ base: 0, md: '3rem' }}
 			bg={'transparent'}
