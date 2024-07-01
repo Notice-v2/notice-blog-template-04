@@ -4,10 +4,10 @@ import { NarrowArrowLeftIcon } from '@/icons'
 import { Link } from '@chakra-ui/next-js'
 import { Box, Button, Flex, Heading, HStack, Text, useMediaQuery, VStack } from '@chakra-ui/react'
 import { PageContent, SocialShare } from '@notice-org/renderer-helper'
+import '@notice-org/renderer-helper/dist/style.css'
 import dayjs from 'dayjs'
 import { useMemo } from 'react'
 import { AuthorSocial } from './AuthorSocial'
-
 interface Props {
 	data: any
 }
