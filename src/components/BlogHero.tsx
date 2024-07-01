@@ -2,9 +2,9 @@
 
 import { Link } from '@chakra-ui/next-js'
 import { AspectRatio, Flex, Heading, Image, Text } from '@chakra-ui/react'
+import { useIsHovered } from '@notice-org/renderer-helper'
 import dayjs from 'dayjs'
 import { useMemo, useRef } from 'react'
-import { useIsHovered } from '../hooks'
 import { Author } from './Author'
 
 interface Props {
